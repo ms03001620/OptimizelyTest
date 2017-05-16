@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.optimizely.Optimizely;
+import com.optimizely.OptimizelyRunningMode;
 import com.optimizely.integration.OptimizelyEventListener;
 import com.optimizely.integration.OptimizelyExperimentData;
 
@@ -18,6 +19,8 @@ public class MainApp extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Optimizely.enableEditor();
 
         /*        Optimizely.startOptimizelyWithAPIToken("249d4eb3f1acf474dc5402f27afd500d:c96d2946",getApplication()*/
         Optimizely.startOptimizelyWithAPIToken("AANLrccB06750O2hxa7Qkqa8HKgepf1B~4768573261", this, new OptimizelyEventListener() {
@@ -34,11 +37,6 @@ public class MainApp extends Application{
             @Override
             public void onOptimizelyExperimentVisited(OptimizelyExperimentData optimizelyExperimentData) {
                 Log.v("____", "onOptimizelyExperimentVisited:"+optimizelyExperimentData.toString());
-            }
-
-            @Override
-            public void onOptimizelyExperimentViewed(OptimizelyExperimentData optimizelyExperimentData) {
-                Log.v("____", "onOptimizelyExperimentViewed:"+optimizelyExperimentData.toString());
             }
 
             @Override
@@ -59,6 +57,11 @@ public class MainApp extends Application{
             @Override
             public void onMessage(String s, String s1, Bundle bundle) {
                 Log.v("____", "onMessage s:"+s+", s1:"+s1+", bundle:"+bundle);
+            }
+
+            @Override
+            public void onOptimizelyRestarting(OptimizelyRunningMode optimizelyRunningMode, OptimizelyRunningMode optimizelyRunningMode1) {
+
             }
         });
     }

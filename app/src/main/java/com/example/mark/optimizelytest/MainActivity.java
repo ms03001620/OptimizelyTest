@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Snackbar.make(view, "Action:"+enableGravityVariable.get()+
+                        ", Gravity:"+gravityVariable.get(), Snackbar.LENGTH_LONG).setAction(
+                        "Action", null).show();
             }
         });
 
@@ -39,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private static LiveVariable<Float> gravityVariable = Optimizely.floatForKey("Gravity", 9.8f /* default value */);
-    private static LiveVariable<Boolean> enableGravityVariable = Optimizely.booleanForKey("EnableGravity", true /* default value */);
+    private static LiveVariable<Float> gravityVariable = Optimizely.floatForKey("Gravity", 0f /* default value */);
+    private static LiveVariable<Boolean> enableGravityVariable = Optimizely.booleanForKey("EnableGravity", false /* default value */);
 
     private float updateSpeed(float currentSpeed) {
         if (enableGravityVariable.get()) {
